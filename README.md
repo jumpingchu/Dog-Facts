@@ -1,9 +1,12 @@
 # 狗狗冷知識
 
-# Data
+## Demo
+![Demo](img/demo.jpeg)
+
+## Data
 - [Dog API by kinduff](https://dogapi.dog/docs/api-v2)
 
-# Note
+## Note
 - googletrans 套件
   - [[Python] 使用 googletrans 套件來進行 Google 翻譯
 ](https://clay-atlas.com/blog/2020/05/05/python-cn-note-package-googletrans-google-translate/)
