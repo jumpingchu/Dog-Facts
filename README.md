@@ -5,6 +5,7 @@
 
 ## Data
 - [Dog API by kinduff](https://dogapi.dog/docs/api-v2)
+- [Dog CEO (API)](https://dog.ceo/dog-api/)
 
 ## Note
 - googletrans 套件
