@@ -3,6 +3,15 @@
 ## Demo
 ![Demo](img/demo.jpeg)
 
+## Skill
+- Python (requests, googletrans)
+- LINE Notify (IFTTT)
+- Google Cloud Platform (GCP cloud services)
+  - Cloud Scheduler
+  - Cloud Functions
+  - Cloud Run
+  - Service Account
+
 ## Data
 - [Dog API by kinduff](https://dogapi.dog/docs/api-v2)
 - [Dog CEO (API)](https://dog.ceo/dog-api/)
