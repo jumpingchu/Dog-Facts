@@ -5,7 +5,8 @@ import requests
 
 class DogImageAPI:
     def __init__(self):
-        self.api_url = "https://dog.ceo/api/breed/{breed}/images/random"
+        self.api_url_by_breed = "https://dog.ceo/api/breed/{breed}/images/"
+        self.api_url_random = "https://dog.ceo/api/breeds/image/random"
         self.breeds_dict = {
             "message": {
                 "affenpinscher": [],
@@ -162,12 +163,32 @@ class DogImageAPI:
         breeds_dict_keys = self.breeds_dict["message"].keys()
         breeds_list = list(breeds_dict_keys)
         for breed in breeds_list:
-            if breed in fact:
+            breed_lowercase = breed.lower()
+            if breed_lowercase in fact.lower():
                 return breed
         return breeds_list[random.randint(0, len(breeds_list))]
 
     def get_img_url_by_breed(self, breed: str) -> str:
-        api_url_with_breed = self.api_url.format(breed=breed)
+        api_url_with_breed = self.api_url_by_breed.format(breed=breed)
         resp = requests.get(api_url_with_breed)
+        img_url_list = json.loads(resp.text)["message"]
+        random.shuffle(img_url_list)
+        for img_url in img_url_list:
+            img_resp = requests.get(img_url)
+            if img_resp.ok:
+                # return img_url
+                return 
+            else:
+                img_url_list.remove(img_url)
+        return
+    
+    def get_random_img_url_and_breed(self):
+        resp = requests.get(self.api_url_random)
         img_url = json.loads(resp.text)["message"]
-        return img_url
+        img_resp = requests.get(img_url)
+        if img_resp.ok:
+            split_img_url = img_url.split("/")
+            breed = split_img_url[-2]
+            return img_url, breed
+        return
+

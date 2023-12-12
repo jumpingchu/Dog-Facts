@@ -1,7 +1,7 @@
 import tomllib
 import requests
-from util.dog_facts_api import DogFactsAPI
-from util.dog_img_api import DogImageAPI
+from dog_facts_api import DogFactsAPI
+from dog_img_api import DogImageAPI
 
 
 def read_toml(filepath: str) -> dict:
@@ -37,6 +37,8 @@ def run():
     dog_img_api = DogImageAPI()
     breed = dog_img_api.find_match_dog_breed(fact)
     img_url = dog_img_api.get_img_url_by_breed(breed)
+    while not img_url:
+        img_url, breed = dog_img_api.get_random_img_url_and_breed()
 
     # Send LINE message
     config = read_toml("config.toml")
@@ -44,8 +46,9 @@ def run():
     if fact_zh_text:
         print(fact)
         print(fact_zh_text)
+        print(breed)
+        print(img_url)
         line_notifier.send_line_msg(fact, fact_zh_text, img_url, breed)
-
-
-if __name__ == "__main__":
-    run()
+        return fact_zh_text
+    else:
+        return "No facts available!"
