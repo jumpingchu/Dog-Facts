@@ -17,4 +17,3 @@ class DogFactsAPI:
         translator = googletrans.Translator()
         fact_zh = translator.translate(fact, dest="zh-tw")
         return fact_zh.text
-

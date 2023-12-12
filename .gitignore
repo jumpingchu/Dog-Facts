@@ -1,5 +1,5 @@
 config.*
-gcp_automate_app.py
+gcp_automate_app*.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
