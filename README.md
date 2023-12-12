@@ -1,7 +1,7 @@
 # 狗狗冷知識
 
 ## Demo
-![Demo](img/demo.jpeg)
+![Demo](img/demo_20231212.jpg)
 
 ## Skill
 - Python (requests, googletrans)
