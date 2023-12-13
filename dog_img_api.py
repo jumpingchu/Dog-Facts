@@ -176,8 +176,7 @@ class DogImageAPI:
         for img_url in img_url_list:
             img_resp = requests.get(img_url)
             if img_resp.ok:
-                # return img_url
-                return 
+                return img_url
             else:
                 img_url_list.remove(img_url)
         return
