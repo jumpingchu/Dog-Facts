@@ -3,7 +3,7 @@
 ## Demo
 ![Demo](img/demo_20231212.jpg)
 
-## Skill
+## Skills
 - Python (requests, googletrans)
 - LINE Notify (IFTTT)
 - Google Cloud Platform (GCP cloud services)
@@ -11,6 +11,10 @@
   - Cloud Functions
   - Cloud Run
   - Service Account
+
+## Project Flow Chart
+
+![Project Flow Chart](img/dog_fact_project_flow.png)
 
 ## Data
 - [Dog API by kinduff](https://dogapi.dog/docs/api-v2)
