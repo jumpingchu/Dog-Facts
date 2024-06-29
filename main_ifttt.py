@@ -12,24 +12,19 @@ def read_toml(filepath: str) -> dict:
 
 class LineNotifier:
     def __init__(self, config: dict):
-        self.line_token = config["LINE"]["token"]
+        ifttt_config = config["IFTTT"]
+        self.ifttt_applet = ifttt_config["applet"]
+        self.ifttt_key = ifttt_config["key"]
+        self.trigger_base_url = f"https://maker.ifttt.com/trigger/{self.ifttt_applet}/with/key/{self.ifttt_key}?"
 
-    def send_line_notify(self, message, img_url):
-        url = "https://notify-api.line.me/api/notify"
-        headers = {"Authorization": f"Bearer {self.line_token}"}
-        data = {
-            "message": message,
-            "imageThumbnail": img_url,
-            "imageFullsize": img_url,
-        }
-        response = requests.post(url, headers=headers, data=data)
-        return response
-
-    def create_message(
-        self, fact: str, fact_zh_text: str, breed: str
+    def send_line_msg(
+        self, fact: str, fact_zh_text: str, img_url: str, breed: str
     ) -> None:
-        message = f"\n{fact_zh_text}\n\n({fact})\n\n(圖片狗狗品種: {breed.capitalize()})"
-        return message
+        trigger_url = self.trigger_base_url
+        trigger_url += f"value1={fact_zh_text}({fact})"
+        trigger_url += f"&value2=圖片狗狗品種: {breed.capitalize()}"
+        trigger_url += f"&value3={img_url}"
+        requests.get(trigger_url)
 
 
 def run():
@@ -53,11 +48,9 @@ def run():
         print(fact_zh_text)
         print(breed)
         print(img_url)
-        message = line_notifier.create_message(fact, fact_zh_text, breed)
-        line_notifier.send_line_notify(message, img_url)
+        line_notifier.send_line_msg(fact, fact_zh_text, img_url, breed)
         return fact_zh_text
     else:
         return "No facts available!"
 
-
-run()
+# run()

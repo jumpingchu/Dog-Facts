@@ -1,5 +1,6 @@
 import tomllib
 import requests
+import functions_framework
 from dog_facts_api import DogFactsAPI
 from dog_img_api import DogImageAPI
 
@@ -31,8 +32,8 @@ class LineNotifier:
         message = f"\n{fact_zh_text}\n\n({fact})\n\n(圖片狗狗品種: {breed.capitalize()})"
         return message
 
-
-def run():
+@functions_framework.http
+def run(request):
     # Get dog facts
     dog_facts_api = DogFactsAPI()
     fact = dog_facts_api.get_raw_fact()
@@ -58,6 +59,3 @@ def run():
         return fact_zh_text
     else:
         return "No facts available!"
-
-
-run()
